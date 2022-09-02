@@ -5,8 +5,11 @@
     name: zsh
 
 - name: change shell to zsh
-  shell: chsh -s $(which zsh)
   become: yes
+  user:
+    name: "{{ the_user }}"
+    shell: /usr/bin/zsh
+
 
 - name: check zsh conf exists
   stat:
