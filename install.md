@@ -18,3 +18,11 @@ install ansible using pip
 upgrading ansible
 
 `python3 -m pip install --upgrade --user ansible`
+
+add to path example
+
+bash
+`PATH='/home/myhome/.local/bin:$PATH'`
+
+zsh
+path+=('/home/myhome/.local/bin')
