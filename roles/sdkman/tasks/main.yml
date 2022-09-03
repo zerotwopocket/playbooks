@@ -1,0 +1,19 @@
+---
+- name: install zip
+  become: yes
+  package:
+    name: zip
+
+- name: install unzip
+  become: yes
+  package:
+    name: unzip
+
+- name: check if sdkman exists
+  idir:
+    path: ~/.sdkman
+  register: sdkman_install
+
+- name: install sdkman
+  when: sdkman_install.idir.exists == False
+  shell: curl -s https://get.sdkman.io | bash  executable=/bin/bash
