@@ -7,3 +7,7 @@
 - name: install sdkman
   when: sdkman_install.stat.exists == False
   shell: curl -s https://get.sdkman.io | bash  executable=/bin/bash
+
+- name: install java 11
+  when: sdkman_install.stat.exists == True
+  shell: "source {{ lookup('env','HOME')}}/.sdkman/bin/sdkman-init.sh && sdk install java 11.0.12-open"
