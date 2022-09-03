@@ -30,7 +30,13 @@
     chdir: ~/OSProjects/Neovim/neovim
     creates: ~/OSProjects/Neovim/neovim/build/bin/nvim
 
+- name: Check if nvim exists
+  shell: command -v nvim
+  register: nvim_exists
+  ignore_errors: yes
+
 - name: Install neovim
+  when: nvim_exists == False
   become: yes
   command: make install
   args:
