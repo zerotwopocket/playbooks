@@ -2,4 +2,13 @@
 - name: update cache
   become: yes
   apt:
-    udpate_cache: true
+    update_cache: yes
+- name: upgrade packages
+  become: yes
+  apt:
+    name: "*"
+    state: latest
+- name: remove unused packages
+  become: yes
+  apt:
+    autoremove: yes
