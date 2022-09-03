@@ -12,3 +12,17 @@
   become: yes
   apt:
     autoremove: yes
+- name: install tree
+  become: yes
+  apt:
+    name: tree
+- name: install zip
+  become: yes
+  package:
+    name: zip
+
+- name: install unzip
+  become: yes
+  package:
+    name: unzip
+

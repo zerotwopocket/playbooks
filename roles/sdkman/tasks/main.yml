@@ -1,14 +1,4 @@
 ---
-- name: install zip
-  become: yes
-  package:
-    name: zip
-
-- name: install unzip
-  become: yes
-  package:
-    name: unzip
-
 - name: check if sdkman exists
   idir:
     path: ~/.sdkman
