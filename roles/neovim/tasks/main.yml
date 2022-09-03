@@ -3,7 +3,7 @@
   become: yes
   apt:
     name:
-      - build-essentials
+      - build-essential
       - ninja-build
       - gettext
       - libtool
@@ -20,7 +20,7 @@
 - name: Clone neovim
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim
-    dest: ~/OSProjects/neovim/neovim
+    dest: ~/OSProjects/Neovim/neovim
 
 - name: Build neovim
   command: make
@@ -34,4 +34,4 @@
   become: yes
   command: make install
   args:
-    chdir: ~/OSProjects/Neovim/neovim
+    chdir: "{{ lookup('env','HOME') }}/OSProjects/Neovim/neovim"
