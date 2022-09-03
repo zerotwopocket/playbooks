@@ -6,25 +6,25 @@
 - name: Build eclipse.jdt.ls
   command: ./mvnw clean install -DskipTests
   environment:
-    JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
+    JAVA_HOME: "{{ lookup('env','HOME') }}/.sdkman/candidates/11.0.12-open"
   args:
-    chdir: ~/OSProjects/Neovim/eclipse/eclipse.jdt.ls
+    chdir: "{{ lookup('env','HOME') }}/OSProjects/Neovim/eclipse/eclipse.jdt.ls"
 
 - name: Clone java-debug
   git:
     repo: https://github.com/microsoft/java-debug
-    dest: ~/OSProjects/Neovim/microsoft/java-debug
+    dest: "{{ lookup('env','HOME') }}/OSProjects/Neovim/microsoft/java-debug"
 - name: Build java-debug
   command: ./mvnw clean install
   environment:
-    JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
+    JAVA_HOME: "{{ lookup('env','HOME') }}/.sdkman/candidates/11.0.12-open"
   args:
-    chdir: ~/OSProjects/Neovim/microsoft/java-debug
+    chdir: "{{ lookup('env','HOME') }}/OSProjects/Neovim/microsoft/java-debug"
 
 - name: Clone vscode-java-test
   git:
     repo: https://github.com/microsoft/vscode-java-test
-    dest: ~/OSProjects/Neovim/microsoft/vscode-java-test
+    dest: "{{ lookup('env','HOME') }}/OSProjects/Neovim/microsoft/vscode-java-test"
     force: true  # npm commands below modify the package.json
 
 - name: Build vscode-java-test
@@ -32,7 +32,7 @@
   environment:
     JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
   args:
-    chdir: ~/OSProjects/Neovim/microsoft/vscode-java-test
+    chdir: "{{ lookup('env','HOME') }}/OSProjects/Neovim/microsoft/vscode-java-test"
   loop:
     - git clean -xdff
     - npm install
