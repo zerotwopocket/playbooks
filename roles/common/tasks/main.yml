@@ -1,0 +1,5 @@
+---
+- name: update cache
+  become: yes
+  apt:
+    udpate_cache: true

@@ -5,5 +5,5 @@
   vars:
     the_user: "{{ ansible_user_id }}"
   roles:
-    - test
+    - common
     - zsh
