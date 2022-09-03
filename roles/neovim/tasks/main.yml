@@ -1,0 +1,37 @@
+---
+- name: Install neovim deps
+  become: yes
+  apt:
+    name:
+      - build-essentials
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - curl
+      - doxygen
+
+- name: Clone neovim
+  ansible.builtin.git:
+    repo: https://github.com/neovim/neovim
+    dest: ~/OSProjects/neovim/neovim
+
+- name: Build neovim
+  command: make
+  environment:
+    CMAKE_BUILD_TYPE: RelWithDebInfo
+  args:
+    chdir: ~/OSProjects/Neovim/neovim
+    creates: ~/OSProjects/Neovim/neovim/build/bin/nvim
+
+- name: Install neovim
+  become: yes
+  command: make install
+  args:
+    chdir: ~/OSProjects/Neovim/neovim
