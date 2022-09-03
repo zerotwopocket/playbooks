@@ -8,4 +8,5 @@
     - common
     - zsh
     - sdkman
+    - node
     - neovim
