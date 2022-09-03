@@ -1,0 +1,16 @@
+---
+- name: Detect nvm
+  stat:
+    path: ~/.nvm
+  register: nvm_install
+
+- name: Install nvm if not exists
+  when: nvm_install.stat.exists == False
+  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash executable=/bin/bash
+
+- name: Verify nvm installation
+  command: -v nvm
+
+- name: Install node via nvm
+  when: nvm_install.stat.exists == True
+  shell: nvm install --lts
