@@ -20,7 +20,7 @@
 - name: Clone neovim
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim
-    dest: ~/OSProjects/Neovim/neovim
+    dest: "{{ lookup('env','HOME') }}/OSProjects/Neovim/neovim"
     update: false
 
 - name: Build neovim
@@ -28,8 +28,8 @@
   environment:
     CMAKE_BUILD_TYPE: RelWithDebInfo
   args:
-    chdir: ~/OSProjects/Neovim/neovim
-    creates: ~/OSProjects/Neovim/neovim/build/bin/nvim
+    chdir: "{{ lookup('env','HOME') }}/OSProjects/Neovim/neovim"
+    creates: "{{ lookup('env','HOME') }}/OSProjects/Neovim/neovim/build/bin/nvim"
 
 - name: Check if nvim exists
   shell: command -v nvim
