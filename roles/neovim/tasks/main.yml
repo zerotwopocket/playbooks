@@ -21,6 +21,7 @@
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim
     dest: ~/OSProjects/Neovim/neovim
+    update: false
 
 - name: Build neovim
   command: make
