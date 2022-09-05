@@ -23,6 +23,11 @@
   shell: "source {{ lookup('env','HOME') }}/.sdkman/bin/sdkman-init.sh && sdk install java 18.0.2.1-open"
   args:
     executable: /bin/bash
+- name: install java8
+  when: sdkman_install.stat.exists == True
+  shell: "source {{ lookup('env','HOME') }}/.sdkman/bin/sdkman-init.sh && sdk install java 8.0.302-open"
+  args:
+    executable: /bin/bash
 - name: install maven
   when: sdkman_install.stat.exists == True
   shell: "source {{ lookup('env','HOME') }}/.sdkman/bin/sdkman-init.sh && sdk install maven"
