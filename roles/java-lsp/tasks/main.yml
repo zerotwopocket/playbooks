@@ -40,3 +40,7 @@
     - git clean -xdff
     - npm install
     - npm run build-plugin
+- name: Download lombok
+  get_url: 
+    url: https://projectlombok.org/downloads/lombok.jar
+    dest: "{{ lookup('env','HOME') }}/OSProjects/Binaries/lombok.jar"
