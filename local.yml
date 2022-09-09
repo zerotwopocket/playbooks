@@ -5,9 +5,11 @@
   vars:
     the_user: "{{ ansible_user_id }}"
   roles:
+    - repos
     - common
     - zsh
     - sdkman
     - node
     - neovim
     - java-lsp
+    - docker

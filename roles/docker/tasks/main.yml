@@ -1,0 +1,21 @@
+---
+- name: Install docker
+  become: yes
+  package:
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+  tags: docker
+
+- name: create docker group
+  become: yes
+  shell: groupadd docker
+  ignore_errors: yes
+  tags: docker
+
+- name: add user to the 'docker' group
+  become: yes
+  shell: usermod -aG docker $USER
+  tags: docker

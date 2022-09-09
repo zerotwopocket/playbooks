@@ -3,7 +3,7 @@
   become: yes
   apt:
     update_cache: yes
-  tags: apt
+  tags: apt, docker
 
 - name: upgrade packages
   become: yes

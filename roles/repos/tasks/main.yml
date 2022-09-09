@@ -1,0 +1,25 @@
+---
+- name: Install dokcer dependencies
+  become: yes
+  package:
+    name: 
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+  tags: docker
+
+- name: create apt keyrings directory
+  become: yes
+  shell: sudo mkdir -p /etc/apt/keyrings
+  tags: docker
+
+- name: add docker's official gpg keyring
+  become: yes
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  tags: docker
+
+- name: set up docker repository
+  shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  tags: docker
+
