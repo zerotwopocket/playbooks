@@ -1,7 +1,7 @@
 - [x] automatically change to zsh shell
 - [x] add sdkman installer
 - [x] add neovim installer
-- [ ] setup neovim configuration
+- [x] setup neovim configuration
 - [x] setup lsps
 - [x] install debugger for java
 - [ ] setup linters
@@ -9,13 +9,13 @@
 - [ ] install nerd fonts
 - [ ] install docker
 - [ ] databases [mariadb?,mysql?]
-- [ ] installer for getnf (nerdfont installer)
-- [ ] installer linuxbrew
+- [x] installer for getnf (nerdfont installer)
+- [x] installer linuxbrew
 - [ ] linux utilities
-	- [ ] ripgrep
-	- [ ] fd
-	- [ ] tree
-	- [ ] fzf: 
-	- [ ] tmux
-	- [ ] httpie
+	- [x] ripgrep
+	- [x] fd
+	- [x] tree
+	- [x] fzf: 
+	- [x] tmux
+	- [x] httpie
 
