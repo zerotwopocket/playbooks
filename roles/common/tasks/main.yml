@@ -3,28 +3,38 @@
   become: yes
   apt:
     update_cache: yes
+  tags: apt
+
 - name: upgrade packages
   become: yes
   apt:
     name: "*"
     state: latest
+  tags: apt
+
 - name: remove unused packages
   become: yes
   apt:
     autoremove: yes
+  tags: apt
+
 - name: install tree
   become: yes
   apt:
     name: tree
+  tags: apt
+
 - name: install zip
   become: yes
   package:
     name: zip
+  tags: apt
 
 - name: install unzip
   become: yes
   package:
     name: unzip
+  tags: apt
 
 - name: check if binaries dir exists
   become: no
@@ -41,6 +51,7 @@
   stat:
     path: /home/linuxbrew
   register: linuxbrew_exists
+  tags: brew
 
 - name: install homebrew
   become: no
@@ -48,8 +59,54 @@
   args:
     executable: /bin/bash
   when: linuxbrew_exists.stat.exists == False
+  tags: brew
+
+- name: install ripgrep
+  become: no
+  shell: brew install ripgrep
+  when: linuxbrew_exists.stat.exists == False
+  tags: brew
 
 - name: install fzf
   become: no
   shell: /home/linuxbrew/.linuxbrew/bin/brew install fzf
   when: linuxbrew_exists.stat.exists == True
+  tags: brew
+
+- name: install httpie
+  become: no
+  shell: /home/linuxbrew/.linuxbrew/bin/brew install httpie
+  when: linuxbrew_exists.stat.exists == True
+  tags: brew
+
+- name: install xclip for clipboard
+  become: yes
+  package:
+    name: xclip
+  tags: apt
+
+- name: install fontconfig
+  become: yes
+  package:
+    name: fontconfig
+  tags: apt
+
+- name: install fd
+  become: yes
+  package:
+    name: fd-find
+  tags: apt
+
+- name: install tmux
+  become: yes
+  package:
+    name: install tmux
+  tags: apt
+
+- name: install install pynvim
+  become: no
+  shell: python3 -m pip install --user --upgrade pynvim
+
+- name: install tree-sitter
+  become: no
+  shell: pip3 install tree-sitter

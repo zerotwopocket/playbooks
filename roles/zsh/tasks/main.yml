@@ -3,6 +3,7 @@
   become: yes
   apt:
     name: zsh
+  tags: apt
 
 - name: change shell to zsh
   become: yes
