@@ -6,12 +6,10 @@
 - [x] install debugger for java
 - [ ] setup linters
 - [ ] setup formatters
-- [ ] install nerd fonts
-- [ ] install docker
-- [ ] databases [mariadb?,mysql?]
+- [x] install docker
 - [x] installer for getnf (nerdfont installer)
 - [x] installer linuxbrew
-- [ ] linux utilities
+- [x] linux utilities
 	- [x] ripgrep
 	- [x] fd
 	- [x] tree
