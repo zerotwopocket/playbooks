@@ -26,3 +26,30 @@
   package:
     name: unzip
 
+- name: check if binaries dir exists
+  become: no
+  stat:
+    path: ~/OSProjects/Binaries
+  register: osproject_bin_exists
+  
+- name: create os project binaries directory
+  shell: mkdir -p ~/OSProjects/Binaries
+  when: osproject_bin_exists.stat.exists == False
+  
+- name: check if homebrew exists
+  become: no
+  stat:
+    path: /home/linuxbrew
+  register: linuxbrew_exists
+
+- name: install homebrew
+  become: no
+  shell: /bin/bash -c "$(curl -fsSL http://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  args:
+    executable: /bin/bash
+  when: linuxbrew_exists.stat.exists == False
+
+- name: install fzf
+  become: no
+  shell: /home/linuxbrew/.linuxbrew/bin/brew install fzf
+  when: linuxbrew_exists.stat.exists == True
