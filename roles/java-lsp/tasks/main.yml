@@ -3,18 +3,22 @@
   git:
     repo: https://github.com/eclipse/eclipse.jdt.ls
     dest: "{{ lookup('env','HOME') }}/OSProjects/Neovim/eclipse/eclipse.jdt.ls"
+
+
+
 - name: Build eclipse.jdt.ls
   command: ./mvnw clean install -DskipTests
   environment:
     JAVA_HOME: "{{ lookup('env','HOME') }}/.sdkman/candidates/java/11.0.12-open"
   args:
     chdir: "{{ lookup('env','HOME') }}/OSProjects/Neovim/eclipse/eclipse.jdt.ls"
-    creates: "{{ lookup('env','HOME') }}/OSProjects/Neovim/eclipse/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugin"
+    creates: "{{ lookup('env','HOME') }}/OSProjects/Neovim/eclipse/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins"
 
 - name: Clone java-debug
   git:
     repo: https://github.com/microsoft/java-debug
     dest: "{{ lookup('env','HOME') }}/OSProjects/Neovim/microsoft/java-debug"
+
 - name: Build java-debug
   command: ./mvnw clean install
   environment:
@@ -44,3 +48,21 @@
   get_url: 
     url: https://projectlombok.org/downloads/lombok.jar
     dest: "{{ lookup('env','HOME') }}/OSProjects/Binaries/lombok.jar"
+
+- name: Download neovim config
+  git:
+    repo: https://github.com/zerotwopocket/nvim.git
+    dest: "{{ lookup('env','HOME') }}/.config/nvim"
+    update: false
+
+- name: Download getnf
+  git:
+    repo: https://github.com/ronniedroid/getnf.git
+    dest: "{{ lookup('env','HOME') }}/OSProjects/getnf"
+    update: false
+
+- name: Build getnf
+  command: ./install.sh
+  args:
+    chdir: "{{ lookup('env','HOME') }}/OSProjects/getnf"
+    executable: /bin/bash
