@@ -51,7 +51,9 @@
   stat:
     path: /home/linuxbrew
   register: linuxbrew_exists
-  tags: brew
+  tags:
+    - brew
+    - package-manager
 
 - name: install homebrew
   become: no
@@ -63,8 +65,8 @@
 
 - name: install ripgrep
   become: no
-  shell: brew install ripgrep
-  when: linuxbrew_exists.stat.exists == False
+  shell: /home/linuxbrew/.linuxbrew/bin/brew install ripgrep
+  when: linuxbrew_exists.stat.exists == True
   tags: brew
 
 - name: install fzf
@@ -76,6 +78,12 @@
 - name: install httpie
   become: no
   shell: /home/linuxbrew/.linuxbrew/bin/brew install httpie
+  when: linuxbrew_exists.stat.exists == True
+  tags: brew
+
+- name: install vagrant
+  become: no
+  shell: /home/linuxbrew/.linuxbrew/bin/brew install vagrant
   when: linuxbrew_exists.stat.exists == True
   tags: brew
 
@@ -100,12 +108,13 @@
 - name: install tmux
   become: yes
   package:
-    name: install tmux
+    name: tmux
   tags: apt
 
 - name: install install pynvim
   become: no
   shell: python3 -m pip install --user --upgrade pynvim
+  tags: nvim
 
 - name: install tree-sitter
   become: no
