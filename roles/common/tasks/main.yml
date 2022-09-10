@@ -111,6 +111,12 @@
     name: tmux
   tags: apt
 
+- name: install maim (screenshot)
+  become: yes
+  package:
+    name: maim
+  tags: apt
+
 - name: install install pynvim
   become: no
   shell: python3 -m pip install --user --upgrade pynvim
