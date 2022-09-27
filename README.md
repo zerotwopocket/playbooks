@@ -12,6 +12,7 @@ base setup for my pc/laptop - ubuntu based linux
 install by tag
 ```zsh
     ansible-playbook --tags tag1,tag2,tag3
+```
 install on local
 ```
    ansible-playbook local.yml --connection=local -K
