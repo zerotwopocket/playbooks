@@ -1,0 +1,8 @@
+---
+
+- hosts: test
+  become: no
+  vars:
+    the_user: "{{ ansible_user_id }}"
+  roles:
+    - test
