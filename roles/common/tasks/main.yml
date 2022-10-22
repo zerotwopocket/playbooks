@@ -1,26 +1,26 @@
 ---
 - name: update cache
   become: yes
-  apt:
+  package:
     update_cache: yes
   tags: apt, docker
 
 - name: upgrade packages
   become: yes
-  apt:
+  package:
     name: "*"
     state: latest
   tags: apt
 
 - name: remove unused packages
   become: yes
-  apt:
+  package:
     autoremove: yes
   tags: apt
 
 - name: install tree
   become: yes
-  apt:
+  package:
     name: tree
   tags: apt
 
